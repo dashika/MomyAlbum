@@ -14,7 +14,7 @@ interface IMamyDAO : IBaseDAO<Mamy> {
     @Query("SELECT * FROM mamy WHERE id = :mamyId")
     override fun getById(mamyId: Long): LiveData<Mamy>
 
-    @Query("SELECT * FROM babies WHERE id_mamy = :mamyId")
+    @Query("SELECT * FROM babies WHERE mamy_id = :mamyId")
     fun getBaby(mamyId: Long): LiveData<Baby>
 
     @Transaction

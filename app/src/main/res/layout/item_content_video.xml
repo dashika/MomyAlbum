@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
 
-</LinearLayout>
+<com.yanzhenjie.album.widget.SquareRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                  style="@style/Album.MatchParent">
+
+    <ImageView
+            android:id="@+id/iv_album_content_image"
+            style="@style/Album.MatchParent"
+            android:contentDescription="@string/album_title"
+            android:scaleType="centerCrop"/>
+
+    <TextView
+            android:id="@+id/tv_duration"
+            style="@style/Album.WrapContent"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/album_dp_6"
+            android:layout_marginLeft="@dimen/album_dp_6"
+            android:layout_marginStart="@dimen/album_dp_6"
+            android:drawablePadding="@dimen/album_dp_4"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/albumFontLight"/>
+</com.yanzhenjie.album.widget.SquareRelativeLayout>

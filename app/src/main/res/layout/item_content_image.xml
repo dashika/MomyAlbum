@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_height="wrap_content" android:layout_width="wrap_content">
+    <com.yanzhenjie.album.widget.SquareImageView
+            android:id="@+id/iv_album_content_image"
+            style="@style/Album.MatchParent"
+            android:contentDescription="@string/album_title"
+            android:scaleType="centerCrop"/>
 
-</LinearLayout>
+    <ImageView
+            android:id="@+id/imgEdit"
+            android:layout_width="@dimen/album_dp_100"
+            android:layout_height="@dimen/album_dp_100"
+            android:src="@android:drawable/ic_menu_edit"
+            android:layout_centerHorizontal="true" android:layout_centerVertical="true"
+            android:contentDescription="edit"/>
+</RelativeLayout>

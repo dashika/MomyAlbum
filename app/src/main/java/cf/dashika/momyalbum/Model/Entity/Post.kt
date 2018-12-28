@@ -11,15 +11,15 @@ import java.util.*
     foreignKeys = [androidx.room.ForeignKey(
         entity = Baby::class,
         parentColumns = ["id"],
-        childColumns = ["id_baby"]
+        childColumns = ["baby_id"]
     )],
-    indices = [Index("id_baby")]
+    indices = [Index("baby_id")]
 )
 data class Post(
-    @ColumnInfo(name = "id_baby") val babyId: Long,
+    @ColumnInfo(name = "baby_id") val babyId: Long,
     val description: String,
     val date: Long,
     val likes: Int
 ) : BaseModel() {
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") var topicId: Long = 0
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") var postId: Long = 0
 }

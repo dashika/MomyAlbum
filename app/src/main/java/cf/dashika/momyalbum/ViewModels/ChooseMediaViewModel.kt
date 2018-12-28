@@ -1,4 +1,4 @@
-package cf.dashika.momyalbum.View.Fragment
+package cf.dashika.momyalbum.ViewModels
 
 import androidx.lifecycle.ViewModel;
 

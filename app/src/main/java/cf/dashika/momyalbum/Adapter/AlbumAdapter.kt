@@ -7,11 +7,11 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import cf.dashika.momyalbum.R
-import cf.dashika.momyalbum.Model.Entity.Topic
-import cf.dashika.momyalbum.ViewModels.TopicViewModel
+import cf.dashika.momyalbum.Model.Entity.Post
+import cf.dashika.momyalbum.ViewModels.PostViewModel
 import cf.dashika.momyalbum.databinding.ListItemRememberBinding
 
-class AlbumAdapter : PagedListAdapter<Topic, AlbumAdapter.ViewHolder>(DIFF_CALLBACK) {
+class AlbumAdapter : PagedListAdapter<Post, AlbumAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -23,9 +23,9 @@ class AlbumAdapter : PagedListAdapter<Topic, AlbumAdapter.ViewHolder>(DIFF_CALLB
     }
 
     override fun onBindViewHolder(holder: AlbumAdapter.ViewHolder, position: Int) {
-        val topic = getItem(position)
-        if (topic != null) {
-            holder.bind(topic)
+        val post = getItem(position)
+        if (post != null) {
+            holder.bind(post)
         } else {
             // Null defines a placeholder item - PagedListAdapter automatically
             // invalidates this row when the actual object is loaded from the
@@ -36,20 +36,20 @@ class AlbumAdapter : PagedListAdapter<Topic, AlbumAdapter.ViewHolder>(DIFF_CALLB
 
     companion object {
         private val DIFF_CALLBACK = object :
-            DiffUtil.ItemCallback<Topic>() {
+            DiffUtil.ItemCallback<Post>() {
             // Concert details may have changed if reloaded from the database,
             // but ID is fixed.
             override fun areItemsTheSame(
-                oldTopic: Topic,
-                newTopic: Topic
+                oldPost: Post,
+                newPost: Post
             ): Boolean =
-                oldTopic.topicId == newTopic.topicId
+                oldPost.postId == newPost.postId
 
             override fun areContentsTheSame(
-                oldTopic: Topic,
-                newTopic: Topic
+                oldPost: Post,
+                newPost: Post
             ): Boolean =
-                oldTopic == newTopic
+                oldPost == newPost
         }
     }
 
@@ -57,11 +57,11 @@ class AlbumAdapter : PagedListAdapter<Topic, AlbumAdapter.ViewHolder>(DIFF_CALLB
         private val binding: ListItemRememberBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(topic: Topic) {
+        fun bind(post: Post) {
             with(binding) {
-                viewModel = TopicViewModel(
+                viewModel = PostViewModel(
                     itemView.context,
-                    topic
+                    post
                 )
                 executePendingBindings()
             }

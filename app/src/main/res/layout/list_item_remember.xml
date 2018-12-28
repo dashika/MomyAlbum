@@ -5,7 +5,7 @@
     <data>
         <variable
                 name="viewModel"
-                type="cf.dashika.momyalbum.ViewModels.TopicViewModel"/>
+                type="cf.dashika.momyalbum.ViewModels.PostViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

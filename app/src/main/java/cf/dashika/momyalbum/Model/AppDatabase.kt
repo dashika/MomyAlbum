@@ -8,16 +8,14 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import cf.dashika.momyalbum.Model.DAO.IMamyDAO
-import cf.dashika.momyalbum.Model.Entity.Baby
-import cf.dashika.momyalbum.Model.Entity.Mamy
-import cf.dashika.momyalbum.Model.Entity.Topic
+import cf.dashika.momyalbum.Model.Entity.*
 import cf.dashika.momyalbum.Util.DATABASE_NAME
 import cf.dashika.momyalbum.Worker.SeedDatabaseWorker
 
 /**
  * The Room database for this app
  */
-@Database(entities = [Mamy::class, Baby::class, Topic::class], version = 1, exportSchema = false)
+@Database(entities = [Mamy::class, Baby::class, Post::class, PostContainer::class], version = 1, exportSchema = false)
 //@TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun mamyDao(): IMamyDAO

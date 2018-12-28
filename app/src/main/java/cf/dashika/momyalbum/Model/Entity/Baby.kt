@@ -11,13 +11,13 @@ import java.util.*
     foreignKeys = [androidx.room.ForeignKey(
         entity = Mamy::class,
         parentColumns = ["id"],
-        childColumns = ["id_mamy"]
+        childColumns = ["mamy_id"]
     )],
-    indices = [Index("id_mamy")]
+    indices = [Index("mamy_id")]
 )
 data class Baby(
 
-    @ColumnInfo(name = "id_mamy") val mamyId: Long,
+    @ColumnInfo(name = "mamy_id") val mamyId: Long,
     val name: String,
     val birthday: Long,
     val avatar: String

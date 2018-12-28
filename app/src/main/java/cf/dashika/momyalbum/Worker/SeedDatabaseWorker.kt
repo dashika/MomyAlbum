@@ -30,6 +30,6 @@ class SeedDatabaseWorker(context: Context, workerParams: WorkerParameters) : Wor
 //        } finally {
 //            jsonReader?.close()
 //        }
-        return Result.SUCCESS
+        return Result.success()
     }
 }

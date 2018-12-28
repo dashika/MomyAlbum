@@ -7,6 +7,6 @@ class MamyAndBabies {
     @Embedded
     var mamy: Mamy? = null
 
-    @Relation(parentColumn = "id", entityColumn = "id_mamy")
+    @Relation(parentColumn = "id", entityColumn = "mamy_id")
     var babies: List<Baby> = arrayListOf()
 }

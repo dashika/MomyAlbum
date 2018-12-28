@@ -6,17 +6,17 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 
 @Entity(
-    tableName = "topics",
+    tableName = "posts_container",
     foreignKeys = [androidx.room.ForeignKey(
-        entity = Topic::class,
+        entity = Post::class,
         parentColumns = ["id"],
-        childColumns = ["id_topic"]
+        childColumns = ["post_id"]
     )],
-    indices = [Index("id_topic")]
+    indices = [Index("post_id")]
 )
-data class TopicURL(
-    @ColumnInfo(name = "id_topic") val topicId: Long,
+data class PostContainer(
+    @ColumnInfo(name = "post_id") val postId: Long,
     var url:String
 ) : BaseModel() {
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") var topicURLId: Long = 0
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") var postContainerId: Long = 0
 }
