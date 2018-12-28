@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 import java.util.*
 
 @Entity(
-    tableName = "topics",
+    tableName = "posts",
     foreignKeys = [androidx.room.ForeignKey(
         entity = Baby::class,
         parentColumns = ["id"],
@@ -15,7 +15,7 @@ import java.util.*
     )],
     indices = [Index("id_baby")]
 )
-data class Topic(
+data class Post(
     @ColumnInfo(name = "id_baby") val babyId: Long,
     val description: String,
     val date: Long,
