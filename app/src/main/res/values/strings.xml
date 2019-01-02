@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MamyAlbum</string>
+    <string name="edit">Edit</string>
+    <string name="preview">Preview</string>
+    <string name="remove">Remove</string>
+    <string name="description">description</string>
 </resources>

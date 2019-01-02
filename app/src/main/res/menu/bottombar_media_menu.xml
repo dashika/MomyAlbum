@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        >
+
+    <item
+            android:id="@+id/bnvEdit"
+            android:icon="@android:drawable/ic_menu_edit"
+            android:title="@string/edit"
+            app:showAsAction="ifRoom"
+            />
+
+    <item
+            android:id="@+id/bnvPreview"
+            android:icon="@android:drawable/ic_menu_crop"
+            android:title="@string/preview"
+            app:showAsAction="ifRoom"
+            />
+
+    <item
+            android:id="@+id/bnvRemove"
+            android:icon="@android:drawable/ic_menu_delete"
+            android:title="@string/remove"
+            app:showAsAction="ifRoom"
+            />
+
+</menu>

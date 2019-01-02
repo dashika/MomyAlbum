@@ -5,7 +5,9 @@
             app:startDestination="@id/albumFragment">
 
     <fragment android:id="@+id/albumFragment" android:name="cf.dashika.momyalbum.View.Fragment.AlbumFragment"
-              android:label="album_fragment" tools:layout="@layout/album_fragment">
+              android:label="album_fragment"
+              tools:layout="@layout/fragment_album"
+            >
         <action android:id="@+id/action_albumFragment_to_chooseMediaFragment" app:destination="@id/chooseMediaFragment"
                 app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
                 app:popUpTo="@id/albumFragment" app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -13,7 +15,25 @@
     </fragment>
 
     <fragment android:id="@+id/chooseMediaFragment" android:name="cf.dashika.momyalbum.View.Fragment.ChooseMediaFragment"
-              android:label="choose_media_fragment" tools:layout="@layout/choose_media_fragment"/>
+              android:label="choose_media_fragment"
+              tools:layout="@layout/fragment_choose_media"
+            >
+        <action
+                android:id="@+id/action_chooseMediaFragment_to_editMediaFragment"
+                app:destination="@id/editMediaFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"
+                app:popUpTo="@+id/chooseMediaFragment"
+                />
+    </fragment>
 
+    <fragment
+            android:id="@+id/editMediaFragment"
+            android:name="cf.dashika.momyalbum.View.Fragment.EditMediaFragment"
+            android:label="edit_media_fragment"
+            tools:layout="@layout/fragment_edit_media"
+            />
 
 </navigation>
