@@ -34,6 +34,11 @@
             android:name="cf.dashika.momyalbum.View.Fragment.EditMediaFragment"
             android:label="edit_media_fragment"
             tools:layout="@layout/fragment_edit_media"
-            />
+            >
+        <argument
+                android:name="path"
+                app:argType="string"
+                />
+    </fragment>
 
 </navigation>

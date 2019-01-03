@@ -8,13 +8,13 @@ apply plugin: 'kotlin-kapt'
 
 apply plugin: 'androidx.navigation.safeargs'
 
+apply plugin: 'com.livinglifetechway.quickpermissions_plugin'
+
 kotlin {
     experimental {
         coroutines 'enable'
     }
 }
-
-
 
 android {
     compileSdkVersion rootProject.compileSdkVersion
