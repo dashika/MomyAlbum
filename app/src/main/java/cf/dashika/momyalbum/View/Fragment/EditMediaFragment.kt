@@ -7,6 +7,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -125,17 +126,20 @@ class EditMediaFragment : Fragment(), OnPhotoEditorListener,
         } else if (!imgEditor!!.isCacheEmpty) run { showSaveDialog() }
     }
 
+    @SuppressLint("MissingPermission")
     @WithPermissions(
         permissions = [Manifest.permission.WRITE_EXTERNAL_STORAGE]
     )
     private fun saveImage() {
         if (requestPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
             //showLoading("Saving...")
+
             val file = File(
-                Environment.getExternalStorageDirectory().toString()
+                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "mamyPicture"
                         + File.separator + ""
                         + System.currentTimeMillis() + ".png"
             )
+
             try {
                 file.createNewFile()
 
@@ -144,11 +148,17 @@ class EditMediaFragment : Fragment(), OnPhotoEditorListener,
                     .setTransparencyEnabled(true)
                     .build()
 
-                imgEditor!!.saveAsFile(file.absolutePath, saveSettings, object : PhotoEditor.OnSaveListener {
+                this.imgEditor!!.saveAsFile(file.absolutePath, saveSettings, object : PhotoEditor.OnSaveListener {
                     override fun onSuccess(@NonNull imagePath: String) {
                         //   hideLoading()
                         // showSnackbar("Image Saved Successfully")
                         pevEditMedia.source.setImageURI(Uri.fromFile(File(imagePath)))
+                        MediaStore.Images.Media.insertImage(
+                            activity!!.contentResolver,
+                            file.absolutePath,
+                            file.name,
+                            file.name
+                        )
                     }
 
                     override fun onFailure(@NonNull exception: Exception) {

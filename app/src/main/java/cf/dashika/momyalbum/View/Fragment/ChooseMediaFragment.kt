@@ -18,6 +18,7 @@ import com.azoft.carousellayoutmanager.CenterScrollListener
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.impl.OnItemClickListener
 
+
 class ChooseMediaFragment : Fragment() {
 
     private lateinit var adapter: MediaAdapter
@@ -32,6 +33,7 @@ class ChooseMediaFragment : Fragment() {
         val binding = FragmentChooseMediaBinding.inflate(inflater, container, false).apply {
             setLifecycleOwner(this@ChooseMediaFragment)
         }
+
         initMedias(binding)
         return binding.root
     }
@@ -43,12 +45,12 @@ class ChooseMediaFragment : Fragment() {
     }
 
     fun onCreateOptionsMenu(menu: Menu): Boolean {
-        activity!!.getMenuInflater().inflate(R.menu.menu_choose_media, menu)
+        activity!!.menuInflater.inflate(R.menu.menu_choose_media, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.getItemId()
+        val id = item.itemId
         when (id) {
             R.id.bnvSave -> {
                 viewModel.save()
@@ -77,7 +79,7 @@ class ChooseMediaFragment : Fragment() {
                 when (item.itemId) {
                     R.id.bnvEdit -> {
                         val directions =
-                            ChooseMediaFragmentDirections.ActionChooseMediaFragmentToEditMediaFragment( viewModel.albumFiles!![position].path)
+                            ChooseMediaFragmentDirections.ActionChooseMediaFragmentToEditMediaFragment(viewModel.albumFiles!![position].path)
                         view.findNavController().navigate(directions)
                         return@setOnNavigationItemSelectedListener true
                     }
@@ -108,7 +110,6 @@ class ChooseMediaFragment : Fragment() {
             .cameraVideoLimitDuration(Integer.MAX_VALUE.toLong())
             .cameraVideoLimitBytes(Integer.MAX_VALUE.toLong())
             .checkedList(viewModel.albumFiles)
-            .afterFilterVisibility(true)
             .onResult { result ->
                 viewModel.albumFiles = result
                 adapter.notifyDataSetChanged(viewModel.albumFiles!!)
