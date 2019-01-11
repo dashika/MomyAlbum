@@ -33,7 +33,7 @@ class ChooseMediaFragment : Fragment() {
         val binding = FragmentChooseMediaBinding.inflate(inflater, container, false).apply {
             setLifecycleOwner(this@ChooseMediaFragment)
         }
-
+        setHasOptionsMenu(true)
         initMedias(binding)
         return binding.root
     }
@@ -44,9 +44,9 @@ class ChooseMediaFragment : Fragment() {
         openAlbum()
     }
 
-    fun onCreateOptionsMenu(menu: Menu): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         activity!!.menuInflater.inflate(R.menu.menu_choose_media, menu)
-        return true
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

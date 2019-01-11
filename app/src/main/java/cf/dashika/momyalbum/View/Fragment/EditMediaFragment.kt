@@ -2,7 +2,6 @@ package cf.dashika.momyalbum.View.Fragment
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
@@ -17,8 +16,6 @@ import androidx.annotation.NonNull
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
@@ -29,6 +26,7 @@ import cf.dashika.momyalbum.Adapter.EditMedia.FilterListener
 import cf.dashika.momyalbum.Adapter.EditMedia.FilterViewAdapter
 import cf.dashika.momyalbum.Adapter.EditMedia.ToolType
 import cf.dashika.momyalbum.R
+import cf.dashika.momyalbum.View.BaseActivity
 import cf.dashika.momyalbum.View.Fragment.EditMedia.EmojiBSFragment
 import cf.dashika.momyalbum.View.Fragment.EditMedia.PropertiesBSFragment
 import cf.dashika.momyalbum.View.Fragment.EditMedia.StickerBSFragment
@@ -131,8 +129,8 @@ class EditMediaFragment : Fragment(), OnPhotoEditorListener,
         permissions = [Manifest.permission.WRITE_EXTERNAL_STORAGE]
     )
     private fun saveImage() {
-        if (requestPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            //showLoading("Saving...")
+        if ((activity as BaseActivity).requestPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            (activity as BaseActivity).showLoading("Saving...")
 
             val file = File(
                 Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "mamyPicture"
@@ -150,8 +148,8 @@ class EditMediaFragment : Fragment(), OnPhotoEditorListener,
 
                 this.imgEditor!!.saveAsFile(file.absolutePath, saveSettings, object : PhotoEditor.OnSaveListener {
                     override fun onSuccess(@NonNull imagePath: String) {
-                        //   hideLoading()
-                        // showSnackbar("Image Saved Successfully")
+                        (activity as BaseActivity).hideLoading()
+                        (activity as BaseActivity).showSnackbar("Image Saved Successfully")
                         pevEditMedia.source.setImageURI(Uri.fromFile(File(imagePath)))
                         MediaStore.Images.Media.insertImage(
                             activity!!.contentResolver,
@@ -162,30 +160,16 @@ class EditMediaFragment : Fragment(), OnPhotoEditorListener,
                     }
 
                     override fun onFailure(@NonNull exception: Exception) {
-                        // hideLoading()
-                        // showSnackbar("Failed to save Image")
+                        (activity as BaseActivity).hideLoading()
+                        (activity as BaseActivity).showSnackbar("Failed to save Image")
                     }
                 })
             } catch (e: IOException) {
                 e.printStackTrace()
-                //hideLoading()
-                //showSnackbar(e.message)
+                (activity as BaseActivity).hideLoading()
+                (activity as BaseActivity).showSnackbar(e.message!!)
             }
         }
-    }
-
-    val READ_WRITE_STORAGE = 52
-
-    private fun requestPermission(permission: String): Boolean {
-        val isGranted = ContextCompat.checkSelfPermission(activity!!, permission) == PackageManager.PERMISSION_GRANTED
-        if (!isGranted) {
-            ActivityCompat.requestPermissions(
-                activity!!,
-                arrayOf(permission),
-                READ_WRITE_STORAGE
-            )
-        }
-        return isGranted
     }
 
     override fun onColorChanged(colorCode: Int) {
@@ -221,7 +205,7 @@ class EditMediaFragment : Fragment(), OnPhotoEditorListener,
             "Cancel"
         ) { dialog, _ -> dialog.dismiss() }
 
-        //builder.setNeutralButton("Discard", { dialog, which -> finish() })
+        builder.setNeutralButton("Discard") { _, _ -> activity!!.onBackPressed() }
         builder.create().show()
     }
 

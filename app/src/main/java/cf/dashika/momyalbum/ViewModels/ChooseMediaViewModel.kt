@@ -1,8 +1,6 @@
 package cf.dashika.momyalbum.ViewModels
 
-import android.app.Activity
 import androidx.lifecycle.ViewModel
-import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 
 class ChooseMediaViewModel : ViewModel() {
