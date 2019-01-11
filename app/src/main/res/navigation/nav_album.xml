@@ -12,6 +12,15 @@
                 app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
                 app:popUpTo="@id/albumFragment" app:popEnterAnim="@anim/nav_default_pop_enter_anim"
                 app:popExitAnim="@anim/nav_default_pop_exit_anim" app:launchSingleTop="true"/>
+        <action
+                android:id="@+id/action_albumFragment_to_mamyProfileFragment"
+                app:destination="@id/mamyProfileFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"
+                app:popUpTo="@+id/albumFragment"
+                />
     </fragment>
 
     <fragment android:id="@+id/chooseMediaFragment" android:name="cf.dashika.momyalbum.View.Fragment.ChooseMediaFragment"
@@ -38,6 +47,20 @@
         <argument
                 android:name="path"
                 app:argType="string"
+                />
+    </fragment>
+
+    <fragment
+            android:id="@+id/mamyProfileFragment"
+            android:name="cf.dashika.momyalbum.View.Fragment.MamyProfileFragment"
+            android:label="mamy_profile_fragment"
+            tools:layout="@layout/fragment_mamy_profile"
+            >
+        <argument
+                android:name="mamy"
+                app:argType="cf.dashika.momyalbum.Model.Entity.Mamy"
+                app:nullable="true"
+                android:defaultValue="@null"
                 />
     </fragment>
 

@@ -4,9 +4,7 @@ import cf.dashika.momyalbum.Model.DAO.IMamyDAO
 import cf.dashika.momyalbum.Model.Entity.Mamy
 import cf.dashika.momyalbum.Util.runOnIoThread
 
-class MamyRepository private constructor(
-    private val mamyDao: IMamyDAO
-) {
+class MamyRepository private constructor(private val mamyDao: IMamyDAO) {
 
     fun createMamy(name: String) {
         runOnIoThread {
@@ -31,7 +29,8 @@ class MamyRepository private constructor(
     companion object {
 
         // For Singleton instantiation
-        @Volatile private var instance: MamyRepository? = null
+        @Volatile
+        private var instance: MamyRepository? = null
 
         fun getInstance(mamyDao: IMamyDAO) =
             instance ?: synchronized(this) {

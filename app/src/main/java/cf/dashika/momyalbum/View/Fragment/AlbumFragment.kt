@@ -15,6 +15,8 @@ import cf.dashika.momyalbum.databinding.FragmentAlbumBinding
 
 class AlbumFragment : Fragment() {
 
+    lateinit var viewModel: AlbumViewModel
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = FragmentAlbumBinding.inflate(inflater, container, false).apply {
             setLifecycleOwner(this@AlbumFragment)
@@ -31,9 +33,15 @@ class AlbumFragment : Fragment() {
 
     private fun subscribeUi(adapter: AlbumAdapter, binding: FragmentAlbumBinding) {
         val factory = InjectorUtils.mamyListViewModelFactory(requireContext())
-        val viewModel = ViewModelProviders.of(this, factory)
+        viewModel = ViewModelProviders.of(this, factory)
             .get(AlbumViewModel::class.java)
+    }
 
+    override fun onStart() {
+        super.onStart()
+        if (!viewModel.isMamyExist) {
+            view!!.findNavController().navigate(R.id.action_albumFragment_to_mamyProfileFragment)
+        }
     }
 
 }

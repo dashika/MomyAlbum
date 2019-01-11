@@ -6,11 +6,9 @@ import androidx.lifecycle.ViewModel
 import cf.dashika.momyalbum.Model.Entity.MamyAndBabies
 import cf.dashika.momyalbum.Model.Repository.MamyRepository
 
-class AlbumViewModel internal constructor(
+class MainActivityViewModel internal constructor(
     mamyRepository: MamyRepository
 ) : ViewModel() {
-
-    val isMamyExist: Boolean = mamyRepository.getMamies().value!!.isEmpty()
 
     val babies = mamyRepository.getMamyAndBabies()
 

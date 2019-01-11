@@ -41,7 +41,7 @@ class ChooseMediaFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(ChooseMediaViewModel::class.java)
-        openAlbum()
+        if (viewModel.albumFiles!!.isEmpty()) openAlbum()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

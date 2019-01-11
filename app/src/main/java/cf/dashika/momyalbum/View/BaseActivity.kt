@@ -15,7 +15,6 @@ abstract class BaseActivity : AppCompatActivity() {
     private val READ_WRITE_STORAGE = 52
     private var progressDialog: ProgressDialog? = null
 
-
     fun requestPermission(permission: String): Boolean {
         val isGranted = ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
         if (!isGranted) {

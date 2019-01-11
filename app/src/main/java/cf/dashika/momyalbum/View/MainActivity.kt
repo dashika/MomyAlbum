@@ -24,7 +24,6 @@ class MainActivity : BaseActivity() {
 
     }
 
-
     @UiThread
     suspend fun makeNetworkRequest() {
         // slowFetch is another suspend function so instead of
@@ -37,7 +36,7 @@ class MainActivity : BaseActivity() {
 
     suspend fun slowFetch(): String {
 
-        return "";
+        return ""
     }
 
 }
